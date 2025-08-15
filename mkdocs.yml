@@ -1,8 +1,8 @@
-site_name: Template de Entrega
-site_author: Sandmann, H.
-site_url: https://hsandmann.github.io/documentation.template
-repo_url: https://github.com/hsandmann/documentation.template
-repo_name: github/documentation.template
+site_name: Machine Learning
+site_author: Akemi, M.
+site_url: https://akemi-m.github.io/machine-learning
+repo_url: https://github.com/akemi-m/machine-learning
+repo_name: github/machine-learning
 
 theme:
   name: material
@@ -24,7 +24,7 @@ theme:
 
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
-      scheme: default 
+      scheme: default
       primary: grey
       toggle:
         icon: material/toggle-switch-off-outline
@@ -77,7 +77,7 @@ markdown_extensions:
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji 
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.snippets:
@@ -94,7 +94,7 @@ markdown_extensions:
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
-      custom_checkbox: true  
+      custom_checkbox: true
   - footnotes
   - pymdownx.critic
   - pymdownx.caret
@@ -103,7 +103,7 @@ markdown_extensions:
   - pymdownx.tilde
   - pymdownx.blocks.caption
   - tables
-      
+
 plugins:
   - glightbox
   - git-revision-date-localized:
@@ -118,7 +118,7 @@ plugins:
       minify_html: true
   - markdown-exec
   - render_swagger:
-      allow_arbitrary_locations : true
+      allow_arbitrary_locations: true
   - termynal:
       prompt_literal_start:
         - "$"
@@ -134,8 +134,8 @@ extra_javascript:
 nav:
   - Home: index.md
   - Roteiros:
-    - Roteiro 1: ./roteiro1/main.md
-    - Roteiro 2: ./roteiro2/main.md
-    - Roteiro 3: ./roteiro3/main.md
-    - Roteiro 4: ./roteiro4/main.md
+      - Roteiro 1: ./roteiro1/main.md
+      - Roteiro 2: ./roteiro2/main.md
+      - Roteiro 3: ./roteiro3/main.md
+      - Roteiro 4: ./roteiro4/main.md
   - Projeto: ./projeto/main.md
