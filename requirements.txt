@@ -15,4 +15,4 @@ numpy
 pandas
 yfinance
 tabulate
-sklearn
+scikit-learn
