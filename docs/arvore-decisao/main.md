@@ -12,10 +12,9 @@ Nesta etapa foi realizada uma **análise inicial** do conjunto de dados para com
 
 O dataset é composto por **28 colunas**, com diferentes tipos de dados:
 
-- **Object:** `ID`, `Customer_ID`, `Month`, `Name`, `Age`, `SSN`, `Occupation`, `Annual_Income`, `Num_of_Loan`, `Type_of_Loan`, `Num_of_Delayed_Payment`, `Changed_Credit_Limit`, `Outstanding_Debt`, `Credit_History_Age`, `Payment_of_Min_Amount`, `Amount_invested_monthly`, `Monthly_Balance`, `Credit_Score`.
-- **Float64:** `Monthly_Inhand_Salary`, `Num_Credit_Inquiries`, `Credit_Utilization_Ratio`, `Total_EMI_per_month`.
-- **Int64:** `Num_Bank_Accounts`, `Num_Credit_Card`, `Interest_Rate`, `Delay_from_due_date`.
-- **Category:** `Payment_Behaviour`.
+- **Object(20):** `ID`, `Customer_ID`, `Month`, `Name`, `Age`, `SSN`, `Occupation`, `Annual_Income`, `Num_of_Loan`, `Type_of_Loan`, `Num_of_Delayed_Payment`, `Changed_Credit_Limit`, `Outstanding_Debt`, `Credit_History_Age`, `Payment_of_Min_Amount`, `Amount_invested_monthly`, `Monthly_Balance`, `Payment_Behaviour`, `Credit_Score`, `Credit_Mix`.
+- **Float64(4):** `Monthly_Inhand_Salary`, `Num_Credit_Inquiries`, `Credit_Utilization_Ratio`, `Total_EMI_per_month`.
+- **Int64(4):** `Num_Bank_Accounts`, `Num_Credit_Card`, `Interest_Rate`, `Delay_from_due_date`.
 
 ### Variável Alvo
 
@@ -51,6 +50,46 @@ Essas medidas incluem **contagem de valores (count)**, **média (mean)**, **desv
 ## Pré-processamento
 
 Limpeza dos dados, tratamento de valores ausentes e normalização.
+
+### Alteração de tipagem dos dados
+
+Considerando a quantidade de colunas de tipo Object mencionadas anteriormente, traz a importância de fazer a mudança de tipagem adequada para cada coluna.
+
+A primeiro momento, foquei em definir os tipos da colunas como string, float64 e int64.
+
+Deixando um pouco de lado o tipo `category`, já que a maioria das colunas, tirando `Credit_Score`, eram necessárias efetuar limpeza antes de serem feitas a mudança de tipagem, que será feita nos próximos passos.
+
+Assim, nesse momento, agrupei as 20 colunas alteradas em duas situações diferentes:
+
+- Apenas alteração de tipo: `ID`, `Customer_ID`, `Month`, `Name`, `SSN`, `Occupation`, `Type_of_Loan`, `Payment_Behaviour`, `Payment_of_Min_Amount` e `Credit_Score` funcionaram apenas utilizando a função de troca de tipo do Pandas;
+- Remoção de sujeira para depois converter para o tipo adequado: `Age`, `Annual_Income`, `Num_of_Loan`, `Outstanding_Debt`, `Amount_invested_monthly`, `Monthly_Balance`, `Num_of_Delayed_Payment`, `Changed_Credit_Limit`, `Credit_Mix` e `Credit_History_Age` havia bastante linhas com o caractere '\_', prejudicando a conversão de tipagem. Assim, foi feita uma substituição desses caracteres para nulos lógicos e depois efetuar a tipagem correta.
+
+Por fim, a tipagem das 28 colunas ficou assim:
+
+- **String(11):** `ID`, `Customer_ID`, `Month`, `Name`, `SSN`, `Occupation`, `Type_of_Loan`, `Credit_Mix`, `Credit_History_Age`, `Payment_of_Min_Amount`, `Payment_Behaviour`.
+- **Float64(9):** `Monthly_Inhand_Salary`, `Num_Credit_Inquiries`, `Credit_Utilization_Ratio`, `Total_EMI_per_month`, `Annual_Income`, `Changed_Credit_Limit`, `Outstanding_Debt`, `Amount_invested_monthly`, `Monthly_Balance`.
+- **Int64(7):** `Num_Bank_Accounts`, `Num_Credit_Card`, `Interest_Rate`, `Delay_from_due_date`, `Age`, `Num_of_Loan`, `Num_of_Delayed_Payment`.
+- **Category(1):** `Credit_Score `.
+
+### Colunas retiradas do modelo
+
+As colunas `ID`, `Customer_ID`, `Month`, `Name`, `SSN` e `Type_of_Loan` foram retiradas do modelo, já que não são informações relevantes.
+Totalizando 22 colunas para utilizar no modelo.
+
+### Limpeza e mudança de tipagem de colunas categóricas
+
+Sobre as colunas que são categóricas e foram colocadas temporariamente como string, `Occupation`, `Credit_Mix`, `Payment_of_Min_Amount` e `Payment_Behaviour`, elas serão limpas e feitas a alteração de tipo.
+
+Por fim, a tipagem das 22 colunas ficou assim:
+
+- **String(1):** `Credit_History_Age`.
+- **Float64(9):** `Monthly_Inhand_Salary`, `Num_Credit_Inquiries`, `Credit_Utilization_Ratio`, `Total_EMI_per_month`, `Annual_Income`, `Changed_Credit_Limit`, `Outstanding_Debt`, `Amount_invested_monthly`, `Monthly_Balance`.
+- **Int64(7):** `Num_Bank_Accounts`, `Num_Credit_Card`, `Interest_Rate`, `Delay_from_due_date`, `Age`, `Num_of_Loan`, `Num_of_Delayed_Payment`.
+- **Category(5):** `Credit_Score `, `Occupation`, `Credit_Mix`, `Payment_of_Min_Amount`, `Payment_Behaviour`.
+
+### Engenharia de dados com `Credit_History_Age`
+
+//
 
 ```python exec="on" html="1"
 --8<-- "./docs/arvore-decisao/decision-tree.py"
