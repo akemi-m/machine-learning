@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 
 plt.figure(figsize=(12, 10))
 
-df = pd.read_csv('https://raw.githubusercontent.com/hsandmann/ml/refs/heads/main/data/fraude.csv')
+df = pd.read_csv('./docs/arvore-decisao/credit_score_classification.csv')
 
 label_encoder = LabelEncoder()
 

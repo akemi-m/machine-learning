@@ -49,47 +49,36 @@ Essas medidas incluem **contagem de valores (count)**, **média (mean)**, **desv
 
 ## Pré-processamento
 
-Limpeza dos dados, tratamento de valores ausentes e normalização.
+Nesta etapa foi realizada a **limpeza dos dados** e o **tratamento de valores ausentes**, além da **alteração de tipagem das colunas** para adequação ao modelo. Esse processo é essencial para garantir consistência e qualidade antes do treinamento da árvore de decisão.
 
-### Alteração de tipagem dos dados
+### Alteração de Tipagem dos Dados
 
-Considerando a quantidade de colunas de tipo Object mencionadas anteriormente, traz a importância de fazer a mudança de tipagem adequada para cada coluna.
+Como destacado anteriormente, grande parte das colunas do dataset estavam no formato `object`.  
+O primeiro passo foi padronizar essas tipagens, ajustando-as para `float64`, `int64` e `category`, de acordo com a natureza de cada variável.
 
-A primeiro momento, foquei em definir os tipos da colunas como string, float64 e int64.
+As 20 colunas originalmente do tipo `object` foram tratadas em dois grupos:
 
-Deixando um pouco de lado o tipo `category`, já que a maioria das colunas, tirando `Credit_Score`, eram necessárias efetuar limpeza antes de serem feitas a mudança de tipagem, que será feita nos próximos passos.
+- **Apenas alteração de tipo**: `ID`, `Customer_ID`, `Month`, `Name`, `SSN`, `Occupation`, `Type_of_Loan`, `Payment_Behaviour`, `Payment_of_Min_Amount` e `Credit_Score`.
+  Essas variáveis puderam ser convertidas diretamente utilizando a função `astype()` do Pandas.
 
-Assim, nesse momento, agrupei as 20 colunas alteradas em duas situações diferentes:
+- **Necessidade de alterações antes da conversão**: `Age`, `Annual_Income`, `Num_of_Loan`, `Outstanding_Debt`, `Amount_invested_monthly`, `Monthly_Balance`, `Num_of_Delayed_Payment`, `Changed_Credit_Limit`, `Credit_Mix` e `Credit_History_Age`.
+  Muitas dessas colunas apresentavam valores com o caractere `'_'`, impossibilitando a conversão imediata. Nesses casos, o caractere foi substituído por nulos lógicos e, em seguida, a tipagem correta foi aplicada.
 
-- Apenas alteração de tipo: `ID`, `Customer_ID`, `Month`, `Name`, `SSN`, `Occupation`, `Type_of_Loan`, `Payment_Behaviour`, `Payment_of_Min_Amount` e `Credit_Score` funcionaram apenas utilizando a função de troca de tipo do Pandas;
-- Remoção de sujeira para depois converter para o tipo adequado: `Age`, `Annual_Income`, `Num_of_Loan`, `Outstanding_Debt`, `Amount_invested_monthly`, `Monthly_Balance`, `Num_of_Delayed_Payment`, `Changed_Credit_Limit`, `Credit_Mix` e `Credit_History_Age` havia bastante linhas com o caractere '\_', prejudicando a conversão de tipagem. Assim, foi feita uma substituição desses caracteres para nulos lógicos e depois efetuar a tipagem correta.
+### Colunas Retiradas do Modelo
 
-Por fim, a tipagem das 28 colunas ficou assim:
+Algumas variáveis foram consideradas irrelevantes para a análise de risco e, portanto, removidas do modelo:
 
-- **String(11):** `ID`, `Customer_ID`, `Month`, `Name`, `SSN`, `Occupation`, `Type_of_Loan`, `Credit_Mix`, `Credit_History_Age`, `Payment_of_Min_Amount`, `Payment_Behaviour`.
+- `ID`, `Customer_ID`, `Month`, `Name`, `SSN`, `Type_of_Loan` e `Credit_History_Age`.
+
+Com isso, restaram **21 colunas** efetivamente utilizadas no processo de modelagem.
+
 - **Float64(9):** `Monthly_Inhand_Salary`, `Num_Credit_Inquiries`, `Credit_Utilization_Ratio`, `Total_EMI_per_month`, `Annual_Income`, `Changed_Credit_Limit`, `Outstanding_Debt`, `Amount_invested_monthly`, `Monthly_Balance`.
 - **Int64(7):** `Num_Bank_Accounts`, `Num_Credit_Card`, `Interest_Rate`, `Delay_from_due_date`, `Age`, `Num_of_Loan`, `Num_of_Delayed_Payment`.
-- **Category(1):** `Credit_Score `.
+- **Category(5):** `Credit_Score`, `Occupation`, `Credit_Mix`, `Payment_of_Min_Amount`, `Payment_Behaviour`.
 
-### Colunas retiradas do modelo
+### Linhas Retiradas do Modelo
 
-As colunas `ID`, `Customer_ID`, `Month`, `Name`, `SSN` e `Type_of_Loan` foram retiradas do modelo, já que não são informações relevantes.
-Totalizando 22 colunas para utilizar no modelo.
-
-### Limpeza e mudança de tipagem de colunas categóricas
-
-Sobre as colunas que são categóricas e foram colocadas temporariamente como string, `Occupation`, `Credit_Mix`, `Payment_of_Min_Amount` e `Payment_Behaviour`, elas serão limpas e feitas a alteração de tipo.
-
-Por fim, a tipagem das 22 colunas ficou assim:
-
-- **String(1):** `Credit_History_Age`.
-- **Float64(9):** `Monthly_Inhand_Salary`, `Num_Credit_Inquiries`, `Credit_Utilization_Ratio`, `Total_EMI_per_month`, `Annual_Income`, `Changed_Credit_Limit`, `Outstanding_Debt`, `Amount_invested_monthly`, `Monthly_Balance`.
-- **Int64(7):** `Num_Bank_Accounts`, `Num_Credit_Card`, `Interest_Rate`, `Delay_from_due_date`, `Age`, `Num_of_Loan`, `Num_of_Delayed_Payment`.
-- **Category(5):** `Credit_Score `, `Occupation`, `Credit_Mix`, `Payment_of_Min_Amount`, `Payment_Behaviour`.
-
-### Engenharia de dados com `Credit_History_Age`
-
-//
+Remoção das linhas nulas.
 
 ```python exec="on" html="1"
 --8<-- "./docs/arvore-decisao/decision-tree.py"
