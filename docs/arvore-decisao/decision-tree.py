@@ -14,9 +14,19 @@ df = pd.read_csv('./docs/arvore-decisao/credit_score_classification.csv')
 label_encoder = LabelEncoder()
 
 # Carregar o conjunto de dados
-x = df[['Valor', 'Periodo']]
-x['Periodo'] = label_encoder.fit_transform(x['Periodo'])
-y = df['Classe']
+
+# todas as colunas menos o target
+x = df.drop("Credit_Score", axis=1)
+
+# aplicar label encoder nas categóricas
+x['Occupation'] = label_encoder.fit_transform(x['Occupation'])
+x['Credit_Mix'] = label_encoder.fit_transform(x['Credit_Mix'])
+x['Payment_of_Min_Amount'] = label_encoder.fit_transform(x['Payment_of_Min_Amount'])
+x['Payment_Behaviour'] = label_encoder.fit_transform(x['Payment_Behaviour'])
+
+# apenas a target
+y = df["Credit_Score"]
+y['Credit_Score'] = label_encoder.fit_transform(y['Credit_Score'])
 
 # Dividir os dados em conjuntos de treinamento e teste
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)

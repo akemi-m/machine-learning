@@ -8,9 +8,42 @@ Análise inicial do conjunto de dados - com explicação sobre a natureza dos da
 
 Nesta etapa foi realizada uma **análise inicial** do conjunto de dados para compreender sua **estrutura** e as **características das variáveis** disponíveis.
 
-### Estrutura do Conjunto de Dados
+### Descrição e estatísticas descritivas das colunas
 
-O dataset é composto por **28 colunas**, com diferentes tipos de dados:
+A base contém as seguintes 28 colunas:
+
+- `ID`: Representa uma identificação única de um registro. Esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete.
+- `Customer_ID`: Representa uma identificação única de uma pessoa. Esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete.
+- `Month`: Representa o mês do ano. Os valores dessa coluna estão bem distribuidos, com todos os meses representando 12,5% da base.
+- `Name`: Representa o nome de uma pessoa. Esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete.
+- `Age`: Representa a idade da pessoa. Os valores dessa coluna estão bem distribuidos, sendo a porcentagem maior da base apenas de 3%.
+- `SSN`: Representa o número de seguridade social de uma pessoa. Esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete.
+- `Occupation`: Representa a ocupação da pessoa. Os valores dessa coluna estão bem distribuidos, com todos as ocupações representando 6,6% da base.
+- `Annual_Income`: Representa a renda anual da pessoa. Os valores dessa coluna estão bem distribuidos, com todos os valores representando 0,016% da base.
+- `Monthly_Inhand_Salary`: Representa o salário base mensal de uma pessoa. Os valores dessa coluna estão bem distribuidos, com todos os valores representando 0,018% da base.
+- `Num_Bank_Accounts`: Representa o número de contas bancárias que a pessoa possui. Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 13%.
+- `Num_Credit_Card`: Representa o número de outros cartões de crédito que a pessoa possui. Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 18%.
+- `Interest_Rate`: Representa a taxa de juros do cartão de crédito. Os valores dessa coluna estão bem distribuidos, com todos os valores representando 5% da base.
+- `Num_of_Loan`: Representa o número de empréstimos feitos no banco. Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 15%.
+- `Type_of_Loan`: Representa os tipos de empréstimos feitos por uma pessoa. Os valores dessa coluna estão bem distribuidos, com todos os valores representando 1,44% da base.
+- `Delay_from_due_date`: Representa a média de dias de atraso em relação à data de pagamento. Os valores dessa coluna estão bem distribuidos, com todos os valores representando 3,6% da base.
+- `Num_of_Delayed_Payment`: Representa a média de pagamentos atrasados por uma pessoa. Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 8,6%.
+- `Changed_Credit_Limit`: Representa a porcentagem de alteração no limite do cartão de crédito. No momento, esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete. Porém, com feature engineering poderiamos extrair informações interessantes para o modelo.
+- `Num_Credit_Inquiries`: Representa o número de consultas de cartão de crédito. Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 11,5%.
+- `Credit_Mix`: Representa a classificação da composição de créditos. Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 36,5%.
+- `Outstanding_Debt`: Representa a dívida pendente a ser paga (em USD). No momento, esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete. Porém, com feature engineering poderiamos extrair informações interessantes para o modelo.
+- `Credit_Utilization_Ratio`: Representa a taxa de utilização do cartão de crédito. No momento, esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete. Porém, com feature engineering poderiamos extrair informações interessantes para o modelo.
+- `Credit_History_Age`: Representa o tempo de histórico de crédito da pessoa. No momento, esta coluna é estatisticamente irrelevante, considerando que a coluna tem informações má construídas. Porém, com feature engineering poderiamos extrair informações interessantes para o modelo.
+- `Payment_of_Min_Amount`: Representa se a pessoa pagou apenas o valor mínimo. Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 52,3%.
+- `Total_EMI_per_month`: Representa os pagamentos mensais de EMI (em USD). No momento, esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete. Porém, com feature engineering poderiamos extrair informações interessantes para o modelo.
+- `Amount_invested_monthly`: Representa o valor investido mensalmente pelo cliente (em USD). No momento, esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete. Porém, com feature engineering poderiamos extrair informações interessantes para o modelo.
+- `Payment_Behaviour`: Representa o comportamento de pagamento do cliente (em USD). Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 25,5%.
+- `Monthly_Balance`: Representa o saldo mensal do cliente (em USD). No momento, esta coluna é estatisticamente irrelevante, considerando que uma vez que nenhum registro se repete. Porém, com feature engineering poderiamos extrair informações interessantes para o modelo.
+- `Credit_Score`: Representa a faixa da pontuação de crédito (Poor, Standard, Good). Os valores dessa coluna estão bem distribuidos, a maior representatividade sendo 53,2%.
+
+### Tipagem das colunas
+
+O dataset é composto por apenas três tipos de dados, `Object`, `Float64` e `Int64`:
 
 - **Object(20):** `ID`, `Customer_ID`, `Month`, `Name`, `Age`, `SSN`, `Occupation`, `Annual_Income`, `Num_of_Loan`, `Type_of_Loan`, `Num_of_Delayed_Payment`, `Changed_Credit_Limit`, `Outstanding_Debt`, `Credit_History_Age`, `Payment_of_Min_Amount`, `Amount_invested_monthly`, `Monthly_Balance`, `Payment_Behaviour`, `Credit_Score`, `Credit_Mix`.
 - **Float64(4):** `Monthly_Inhand_Salary`, `Num_Credit_Inquiries`, `Credit_Utilization_Ratio`, `Total_EMI_per_month`.
@@ -20,7 +53,11 @@ O dataset é composto por **28 colunas**, com diferentes tipos de dados:
 
 O modelo tem como **variável alvo (target)** a coluna **`Credit_Score`**, que representa a **classificação de crédito** dos clientes.
 
-Essa variável é categórica, indicando a faixa de risco associada a cada cliente, e será utilizada para treinar e avaliar o desempenho das **árvores de decisão**.
+A distribuição de classificação dessa variável é a seguinte:
+
+- Standard: 53174 (53,2%)
+- Poor: 28998 (29%)
+- Good: 17828 (17,8%)
 
 ### Amostra dos Dados
 
@@ -31,19 +68,6 @@ A seguir, um exemplo com 3 linhas de um total de 100.000 registros:
     ```python exec="1"
     --8<-- "./docs/arvore-decisao/dataset.py"
     ```
-
-### Estatísticas Descritivas
-
-A tabela abaixo resume as **estatísticas descritivas** calculadas para as variáveis numéricas do dataset:
-
-=== "summary statistics"
-
-    ```python exec="1"
-    --8<-- "./docs/arvore-decisao/describe.py"
-    ```
-
-Essas medidas incluem **contagem de valores (count)**, **média (mean)**, **desvio padrão (std)**, **mínimo (min)**, **percentis (25%, 50%, 75%)** e **máximo (max)**.  
-É importante destacar que algumas colunas aparecem como `object` no dataset, o que impede que sejam incluídas nessa análise estatística automaticamente.
 
 ### Visualizações
 
