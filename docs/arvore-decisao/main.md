@@ -131,7 +131,7 @@ Com isso, restaram **21 colunas** efetivamente utilizadas no processo de modelag
 
 ### Linhas Retiradas do Modelo
 
-Foram removidas **73.700 linhas** que continham valores nulos ou nulos lógicos, resultando em **26.300 registros** disponíveis para o treinamento do modelo.
+Foram removidas **71.635 linhas** que continham valores nulos ou nulos lógicos, resultando em **28.365 registros** disponíveis para o treinamento do modelo.
 
 ## Divisão dos Dados
 
@@ -156,7 +156,7 @@ O modelo utilizado foi a **Decision Tree (Árvore de Decisão)**, considerando a
     --8<-- "./docs/arvore-decisao/decision-tree-code.py"
     ```
 
-=== "data sample (6/26.300)"
+=== "data sample (6/28.365)"
 
     ```python exec="1"
     --8<-- "./docs/arvore-decisao/decision-tree-dataset.py"
@@ -166,17 +166,17 @@ O modelo utilizado foi a **Decision Tree (Árvore de Decisão)**, considerando a
 
 A avaliação do desempenho do modelo foi realizada utilizando métricas apropriadas para classificação.
 
-**Acurácia:** o modelo apresentou **≈70,8%** de acertos, indicando um desempenho satisfatório considerando o conjunto de teste.
+**Acurácia:** o modelo apresentou **≈70%** de acertos, indicando um desempenho satisfatório considerando o conjunto de teste.
 
 ### Importância das Features
 
 Analisando o impacto de cada variável na decisão da árvore de classificação, as mais relevantes foram:
 
-- `Outstanding_Debt` – 0,20
-- `Credit_Mix` – 0,14
-- `Credit_History_Age_Ajustado` – 0,10
-- `Changed_Credit_Limit` – 0,08
-- `Delay_from_due_date` – 0,075
+- `Outstanding_Debt` – 0,208
+- `Credit_Mix` – 0,133
+- `Credit_History_Age_Ajustado` – 0,095
+- `Changed_Credit_Limit` – 0,088
+- `Delay_from_due_date` – 0,086
 
 Essas informações são úteis para **interpretabilidade do modelo**, permitindo compreender quais atributos têm maior influência na classificação do `Credit_Score`.
 
@@ -192,8 +192,7 @@ Durante o processo, foram realizadas etapas importantes de **exploração e pré
 - Aplicação de **feature engineering**, transformando variáveis dispersas em categorias significativas.
 
 Após essas etapas, o modelo foi treinado com **26.300 registros** e **21 variáveis preditivas**. A base foi dividida em **70% para treino** e **30% para teste**, utilizando uma árvore de decisão.
-
-O modelo apresentou **≈70,8% de acurácia** no conjunto de teste, com destaque para as features mais relevantes na classificação:
+O modelo apresentou **≈70% de acurácia** no conjunto de teste, com destaque para as features mais relevantes na classificação:
 
 - `Outstanding_Debt`
 - `Credit_Mix`

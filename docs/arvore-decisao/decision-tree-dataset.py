@@ -111,7 +111,7 @@ df['Credit_Utilization_Ratio_Ajustado'] = df['Credit_Utilization_Ratio_Ajustado'
 df['Total_EMI_per_month_Ajustado'] = df['Total_EMI_per_month_Ajustado'].astype('category')
 
 # remoção de linhas com valores nulos
-df.dropna()
+df = df.dropna()
 
 # resetar index
 df = df.reset_index(drop=True)

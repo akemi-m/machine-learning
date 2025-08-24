@@ -5,6 +5,7 @@ from io import StringIO
 from sklearn import tree
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from sklearn import metrics
 
 df = pd.read_csv('credit_score_classification.csv', low_memory=False)
 
@@ -117,15 +118,12 @@ df['Credit_Utilization_Ratio_Ajustado'] = df['Credit_Utilization_Ratio_Ajustado'
 df['Total_EMI_per_month_Ajustado'] = df['Total_EMI_per_month_Ajustado'].astype('category')
 
 # remoção de linhas com valores nulos
-df.dropna()
+df = df.dropna()
 
 # resetar index
 df = df.reset_index(drop=True)
 
 # Modelo de Árvore de Decisão
-
-from sklearn import metrics
-import matplotlib.pyplot as plt
 
 label_encoder = LabelEncoder()
 # aplicar label encoder na target
