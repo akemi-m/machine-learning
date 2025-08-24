@@ -191,7 +191,7 @@ Durante o processo, foram realizadas etapas importantes de **exploração e pré
 - Remoção de colunas irrelevantes e tratamento de valores nulos ou inconsistentes;
 - Aplicação de **feature engineering**, transformando variáveis dispersas em categorias significativas.
 
-Após essas etapas, o modelo foi treinado com **26.300 registros** e **21 variáveis preditivas**. A base foi dividida em **70% para treino** e **30% para teste**, utilizando uma árvore de decisão.
+Após essas etapas, o modelo foi treinado com **28.365 registros** e **21 variáveis preditivas**. A base foi dividida em **70% para treino** e **30% para teste**, utilizando uma árvore de decisão.
 O modelo apresentou **≈70% de acurácia** no conjunto de teste, com destaque para as features mais relevantes na classificação:
 
 - `Outstanding_Debt`
