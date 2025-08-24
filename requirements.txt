@@ -16,4 +16,4 @@ pandas
 yfinance
 tabulate
 scikit-learn
-io
+StringIO
