@@ -135,9 +135,9 @@ nav:
   - Home: index.md
   - Roteiros:
       - 1. Árvore de Decisão: ./arvore-decisao/main.md
-      - Roteiro 1: ./roteiro1/main.md
-      - Roteiro 2: ./roteiro2/main.md
-      - Roteiro 3: ./roteiro3/main.md
-      - Roteiro 4: ./roteiro4/main.md
-      - Exemplo Home: ./exemplo-home/main.md
+      - Exemplo 1: ./roteiro1/main.md
+      - Exemplo 2: ./roteiro2/main.md
+      - Exemplo 3: ./roteiro3/main.md
+      - Exemplo 4: ./roteiro4/main.md
+      - Exemplo: ./exemplo-home/main.md
   - Projeto: ./projeto/main.md
