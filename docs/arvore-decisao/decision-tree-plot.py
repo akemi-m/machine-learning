@@ -4,12 +4,11 @@ from io import StringIO
 
 df = pd.read_csv('./docs/arvore-decisao/credit_score_classification.csv')
 
-# Quebrar nomes longos
 df['Payment_Behaviour'] = df['Payment_Behaviour'].str.replace('_', '\n')
 
 ct = pd.crosstab(df["Payment_Behaviour"], df["Credit_Score"])
 
-plt.figure(figsize=(12,8))  # figura maior
+plt.figure(figsize=(12,8))
 ct.plot(kind="barh", figsize=(12,8), alpha=0.8, legend=True)
 
 plt.ylabel("Payment_Behaviour")

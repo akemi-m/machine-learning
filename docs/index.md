@@ -10,7 +10,7 @@ Este espaço reúne desde os primeiros roteiros de estudo até o desenvolvimento
 
 ## Entregas
 
-- [x] **1. Árvore de Decisão** – 23/02/2025
+- [x] **1. Árvore de Decisão** – 29/08/2025
 - [ ] **Roteiro 2** – _pendente_
 - [ ] **Roteiro 3** – _pendente_
 - [ ] **Roteiro 4** – _pendente_

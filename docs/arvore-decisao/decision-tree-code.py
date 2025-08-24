@@ -5,8 +5,6 @@ from io import StringIO
 from sklearn import tree
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import cross_val_score
 
 df = pd.read_csv('credit_score_classification.csv', low_memory=False)
 
